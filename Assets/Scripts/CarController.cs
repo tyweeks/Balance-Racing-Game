@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
     public float speed = 1500;
+    public float rotationSpeed = 15f;
+
     public WheelJoint2D backWheel;
     public WheelJoint2D frontWheel;
+    public Rigidbody2D rb;
+
 
     private float movement = 0f;
+    private float rotation = 0f;
 
     private void Update()
     {
         movement = -Input.GetAxisRaw("Vertical") * speed;
+        rotation = Input.GetAxisRaw("Horizontal");
     }
 
     private void FixedUpdate()
@@ -31,5 +35,7 @@ public class CarController : MonoBehaviour
             backWheel.motor = motor;
             frontWheel.motor = motor;
         }
+
+        rb.AddTorque(-rotation * rotationSpeed * Time.fixedDeltaTime);
     }
 }
