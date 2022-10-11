@@ -6,10 +6,15 @@ public class EndGame : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(RestartGame());
+        RestartGame();
     }
 
-    private IEnumerator RestartGame()
+    public void RestartGame()
+    {
+        StartCoroutine(RestartGameCoroutine());
+    }
+
+    private IEnumerator RestartGameCoroutine()
     {
         yield return new WaitForSeconds(.5f);
 
