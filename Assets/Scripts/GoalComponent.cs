@@ -6,7 +6,7 @@ public class GoalComponent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && !gameWon)
+        if (collision.CompareTag("Player") && !gameWon)
         {
             gameWon = true;
             Debug.Log("Game Won!");

@@ -6,7 +6,10 @@ public class EndGame : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        RestartGame();
+        if (collision.CompareTag("Collidable"))
+        {
+            RestartGame();
+        }
     }
 
     public void RestartGame()
