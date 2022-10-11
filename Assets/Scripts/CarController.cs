@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float speed = 1500;
+    public WheelJoint2D backWheel;
+
+    private float movement = 0f;
+
+    private void Update()
     {
-        
+        movement = -Input.GetAxisRaw("Vertical") * speed;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        if (movement == 0)
+        {
+            backWheel.useMotor = false;
+        }
+        else
+        {
+            backWheel.useMotor = true;
+            JointMotor2D motor = new JointMotor2D { motorSpeed = movement, maxMotorTorque = backWheel.motor.maxMotorTorque };
+            backWheel.motor = motor;
+        }
     }
 }
